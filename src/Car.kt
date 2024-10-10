@@ -1,15 +1,15 @@
-import korlibs.image.color.*
 import korlibs.korge.box2d.*
 import korlibs.korge.render.*
 import korlibs.korge.scene.*
 import korlibs.korge.view.*
-import korlibs.math.geom.*
 import org.jbox2d.dynamics.*
+import org.jbox2d.dynamics.joints.*
 
 class Wheel(
     cont: Container,
-    x:Number,
-    y:Number
+    x: Number,
+    y: Number,
+    body: Body.Companion
 ):Container(){
     init {
         var wheel = image(
@@ -36,11 +36,12 @@ enum class CarType {
     Dodge
 }
 
-class Car (
+class Car(
     var ctype: CarType,
     cont: SceneContainer,
-    x:Number,
-    y:Number
+    x: Number,
+    y: Number,
+    body: Body.Companion
 ): Container() {
     private var car: Image = Image(
         when (ctype){
@@ -55,7 +56,7 @@ class Car (
         car.addTo(cont)
         car.registerBodyWithFixture(type = BodyType.DYNAMIC, density = 2, friction = 0.01)
 
-        var wh = Wheel(cont, 700, 50)
+        //var wh = Wheel(cont, 700, 50)
 
         //this.addTo(cont)
     }

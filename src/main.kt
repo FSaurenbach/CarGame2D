@@ -1,8 +1,6 @@
 import korlibs.image.bitmap.*
-import korlibs.time.*
 import korlibs.korge.*
 import korlibs.korge.scene.*
-import korlibs.korge.tween.*
 import korlibs.korge.view.*
 import korlibs.image.color.*
 import korlibs.image.format.*
@@ -10,10 +8,6 @@ import korlibs.io.file.std.*
 import korlibs.korge.box2d.*
 import korlibs.korge.view.align.*
 import korlibs.math.geom.*
-import korlibs.math.geom.Circle
-import korlibs.math.interpolation.*
-import org.jbox2d.collision.shapes.*
-import org.jbox2d.common.*
 import org.jbox2d.dynamics.*
 
 var dodgeBit: Bitmap? = null
@@ -45,27 +39,15 @@ class GameScene : Scene() {
                 .anchor(Anchor.CENTER)
 
         }*/
-        var ca = Car(CarType.Dodge, sceneContainer, 500, 50)
-        //var w = Wheel(sceneContainer, 600, 50)
+        var body = Body
+        var ca = Car(CarType.Dodge, sceneContainer, 500, 50, body)
+        var wh = Wheel(sceneContainer, 700, 50, body)
 
         val ground = solidRect(800, 50, Colors.BLUE)
         ground.y = sceneHeight.toDouble() - 60
         ground.centerXOnStage()
         ground.registerBodyWithFixture(type = BodyType.STATIC, friction = 0.2, restitution = 0.2)
-        //fastEllipse(Size(100, 100))
-
-
-
-        /*val image = Car(CarType.Dodge, sceneContainer)
-            .registerBodyWithFixture(
-                type = BodyType.DYNAMIC,
-                linearVelocityY = 6.0,
-                friction = 0.2,
-                restitution =6
-            )*/
-
-
-        //image.scale = 0.1
+        
 
 
     }
