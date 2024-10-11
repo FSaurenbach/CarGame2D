@@ -39,18 +39,19 @@ class GameScene : Scene() {
                 .anchor(Anchor.CENTER)
 
         }*/
-        var body = Body
-        var ca = Car(CarType.Dodge, sceneContainer, 500, 50, body)
-        var wh = Wheel(sceneContainer, 700, 50, body)
 
+        val car = Car(CarType.Dodge, sceneContainer, 500, 50)
+
+        // Create wheels
+        val frontWheel = Wheel(sceneContainer, 500, 100, Body)
+        val rearWheel = Wheel(sceneContainer, 600, 100, Body)
+        attachWheelJoint(nearestBox2dWorld, car.car, frontWheel.wheel!!)
+        attachWheelJoint(nearestBox2dWorld, car.car!!, rearWheel.wheel!!)
         val ground = solidRect(800, 50, Colors.BLUE)
         ground.y = sceneHeight.toDouble() - 60
         ground.centerXOnStage()
         ground.registerBodyWithFixture(type = BodyType.STATIC, friction = 0.2, restitution = 0.2)
-        
 
 
     }
 }
-
-
